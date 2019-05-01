@@ -282,6 +282,12 @@ var EventList = function (_React$Component3) {
             " Profile"
           ),
           React.createElement(
+            "a",
+            { className: "nav-link", href: "about.html" },
+            React.createElement("i", { className: "fas fa-user-alt" }),
+            " About"
+          ),
+          React.createElement(
             "div",
             { className: "navbar-nav ml-auto" },
             React.createElement(EventAdd, { createEvent: this.createEvent })

@@ -177,6 +177,7 @@ class IssueList extends React.Component {
           <a className="navbar-brand" href="index.html">Game On!</a>
           <a className="nav-link" href="index.html"><i className="far fa-calendar-alt"></i> Events</a>
             <a className="nav-link" href="view02.html"><i className="fas fa-user-alt"></i> Profile</a>
+            <a className="nav-link" href="about.html"><i className="fas fa-user-alt"></i> About</a>
           </nav>
         
         <div style={{display: "inline-block" }}>

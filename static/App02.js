@@ -42,18 +42,18 @@ var IssueFilter = function (_React$Component) {
 var IssueRow = function IssueRow(props) {
   return React.createElement(
     "table",
-    { className: "table", width: "5%" },
+    { className: "table-responsive", width: "5%" },
     React.createElement(
       "thead",
       null,
       React.createElement(
         "th",
-        { width: "12%" },
+        null,
         "Favorite Sport"
       ),
       React.createElement(
         "th",
-        { width: "12%" },
+        null,
         "Time Available"
       )
     ),
@@ -289,6 +289,12 @@ var IssueList = function (_React$Component4) {
             { className: "nav-link", href: "view02.html" },
             React.createElement("i", { className: "fas fa-user-alt" }),
             " Profile"
+          ),
+          React.createElement(
+            "a",
+            { className: "nav-link", href: "about.html" },
+            React.createElement("i", { className: "fas fa-user-alt" }),
+            " About"
           )
         ),
         React.createElement(
@@ -306,7 +312,6 @@ var IssueList = function (_React$Component4) {
           null,
           "Junior"
         ),
-        React.createElement("hr", null),
         React.createElement(IssueTable, { issues: this.state.issues }),
         React.createElement(IssueAdd, { createIssue: this.createIssue }),
         React.createElement(IssueAdd2, { createIssue: this.createIssue })
