@@ -1,15 +1,12 @@
-# Game On
+# Message Board
 
 # Overview
 
-The purpose of the app is to provide a meet-up service for people looking for pick-up sports games
+Messages people construct will appear on the board in chronological ordering.
 
-# Team Members
+# Authors
 
-Doris Chan\
-Mike Pruyn\
-Matt Mill\
-Gui Silva
+Guilherme Silva
 
 # Application Initialization
 
