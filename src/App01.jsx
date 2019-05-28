@@ -1,5 +1,5 @@
 var contentNode = document.getElementById("contents");
-
+var curId=0;
 class EventFilter extends React.Component {
   render() {
     return <a href='view02.html'>Profile</a>;
@@ -8,10 +8,8 @@ class EventFilter extends React.Component {
 
 const EventRow = (props) => (
   <tr>
-    <td>{props.Event.sport}</td>
-    <td>{props.Event.location}</td>
+    <td>{props.Event.mes}</td>
     <td>{props.Event.date}</td>
-    <td>{props.Event.time}</td>
     
   </tr>
 );
@@ -31,13 +29,11 @@ function EventTable(props) {
     <table className="table table-striped" >
       <thead>
         <tr>
-          <th>Sport</th>
-          <th>Location</th>
-          <th>Date</th>
-          <th>Time</th>
-
+        <th>Message</th>
+        <th>Date</th>
         </tr>
       </thead>
+      
       <tbody>{EventRows}</tbody>
     </table>
   );
@@ -51,39 +47,33 @@ class EventAdd extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let newDate = new Date(); 
     let form = document.forms.EventAdd;
     this.props.createEvent({
       
-      sport: form.sport.value,
-      location: form.location.value,
-      date: form.date.value,
-      time: form.time.value,
-      people_going: 0
+      mes: form.mes.value,   
+  
+      date: newDate.getMonth()+1 + '/' + newDate.getDate() + '/' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds(),
     });
-    // Clear the form for the next input.
-    form.sport.value = '';
-    form.location.value = '';
-    form.date.value = '';
-    form.time.value = '';
+    
+    form.mes.value = '';
+    curId++;
+    window.location.reload();
   }
 
   render() {
     return (
       <div className="dropdown">
         <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i className="far fa-calendar-plus"></i> Add an Event
+        <i className="far fa-comment-dots"></i> New Message
         </button>
-        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+        <div className="dropdown-menu " aria-labelledby="dropdownMenu2">
           <form className="px-4 py-3" name="EventAdd" onSubmit={this.handleSubmit}>
             <div className="form-row">
               <div>
-                <label><i className="fas fa-running"></i> Sport</label>
-                <input className="form-control" type="text" name="sport" placeholder="Sport" />
-                <label><i className="fas fa-map-marker-alt"></i > Where?</label>
-                <input className="form-control" type="text" name="location" placeholder="Location" />  
-                <label><i className="fas fa-clock"></i> When?</label>
-                <input className="form-control" type="date" name="date" placeholder="When?" />
-                <input className="form-control" type="time" name="time" placeholder="When?" /> 
+                <label> Message</label>
+                <textarea className="form-control" type="text" name="mes" placeholder="Write your message" />
+                
               </div>
             </div>
             <button type="submit" className="btn btn-primary" >Add</button>
@@ -146,11 +136,8 @@ class EventList extends React.Component {
     return (
       <div>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand" href="index.html">Game On!</a>
-            <a className="nav-link" href="index.html"><i className="far fa-calendar-alt"></i> Events</a>
-            <a className="nav-link" href="view02.html"><i className="fas fa-user-alt"></i> Profile</a>
-            <a className="nav-link" href="about.html"><i className="fas fa-user-alt"></i> About</a>
-            <div className="navbar-nav ml-auto">
+            <a className="navbar-brand" href="index.html">Message Board</a>
+            <div className="navbar-nav ">
               <EventAdd createEvent={this.createEvent} />
             </div>
           </nav>

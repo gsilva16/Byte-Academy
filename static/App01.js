@@ -9,6 +9,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var contentNode = document.getElementById("contents");
+var curId = 0;
 
 var EventFilter = function (_React$Component) {
   _inherits(EventFilter, _React$Component);
@@ -40,22 +41,12 @@ var EventRow = function EventRow(props) {
     React.createElement(
       "td",
       null,
-      props.Event.sport
-    ),
-    React.createElement(
-      "td",
-      null,
-      props.Event.location
+      props.Event.mes
     ),
     React.createElement(
       "td",
       null,
       props.Event.date
-    ),
-    React.createElement(
-      "td",
-      null,
-      props.Event.time
     )
   );
 };
@@ -80,22 +71,12 @@ function EventTable(props) {
         React.createElement(
           "th",
           null,
-          "Sport"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Location"
+          "Message"
         ),
         React.createElement(
           "th",
           null,
           "Date"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Time"
         )
       )
     ),
@@ -123,20 +104,18 @@ var EventAdd = function (_React$Component2) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      var newDate = new Date();
       var form = document.forms.EventAdd;
       this.props.createEvent({
 
-        sport: form.sport.value,
-        location: form.location.value,
-        date: form.date.value,
-        time: form.time.value,
-        people_going: 0
+        mes: form.mes.value,
+
+        date: newDate.getMonth() + 1 + '/' + newDate.getDate() + '/' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds()
       });
-      // Clear the form for the next input.
-      form.sport.value = '';
-      form.location.value = '';
-      form.date.value = '';
-      form.time.value = '';
+
+      form.mes.value = '';
+      curId++;
+      window.location.reload();
     }
   }, {
     key: "render",
@@ -147,12 +126,12 @@ var EventAdd = function (_React$Component2) {
         React.createElement(
           "button",
           { className: "btn btn-secondary dropdown-toggle", type: "button", id: "dropdownMenu2", "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" },
-          React.createElement("i", { className: "far fa-calendar-plus" }),
-          " Add an Event"
+          React.createElement("i", { className: "far fa-comment-dots" }),
+          " New Message"
         ),
         React.createElement(
           "div",
-          { className: "dropdown-menu dropdown-menu-right", "aria-labelledby": "dropdownMenu2" },
+          { className: "dropdown-menu ", "aria-labelledby": "dropdownMenu2" },
           React.createElement(
             "form",
             { className: "px-4 py-3", name: "EventAdd", onSubmit: this.handleSubmit },
@@ -165,25 +144,9 @@ var EventAdd = function (_React$Component2) {
                 React.createElement(
                   "label",
                   null,
-                  React.createElement("i", { className: "fas fa-running" }),
-                  " Sport"
+                  " Message"
                 ),
-                React.createElement("input", { className: "form-control", type: "text", name: "sport", placeholder: "Sport" }),
-                React.createElement(
-                  "label",
-                  null,
-                  React.createElement("i", { className: "fas fa-map-marker-alt" }),
-                  " Where?"
-                ),
-                React.createElement("input", { className: "form-control", type: "text", name: "location", placeholder: "Location" }),
-                React.createElement(
-                  "label",
-                  null,
-                  React.createElement("i", { className: "fas fa-clock" }),
-                  " When?"
-                ),
-                React.createElement("input", { className: "form-control", type: "date", name: "date", placeholder: "When?" }),
-                React.createElement("input", { className: "form-control", type: "time", name: "time", placeholder: "When?" })
+                React.createElement("textarea", { className: "form-control", type: "text", name: "mes", placeholder: "Write your message" })
               )
             ),
             React.createElement(
@@ -267,29 +230,11 @@ var EventList = function (_React$Component3) {
           React.createElement(
             "a",
             { className: "navbar-brand", href: "index.html" },
-            "Game On!"
-          ),
-          React.createElement(
-            "a",
-            { className: "nav-link", href: "index.html" },
-            React.createElement("i", { className: "far fa-calendar-alt" }),
-            " Events"
-          ),
-          React.createElement(
-            "a",
-            { className: "nav-link", href: "view02.html" },
-            React.createElement("i", { className: "fas fa-user-alt" }),
-            " Profile"
-          ),
-          React.createElement(
-            "a",
-            { className: "nav-link", href: "about.html" },
-            React.createElement("i", { className: "fas fa-user-alt" }),
-            " About"
+            "Message Board"
           ),
           React.createElement(
             "div",
-            { className: "navbar-nav ml-auto" },
+            { className: "navbar-nav " },
             React.createElement(EventAdd, { createEvent: this.createEvent })
           )
         ),
