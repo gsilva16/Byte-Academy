@@ -12,7 +12,7 @@ let port_num = process.env.PORT;
 let db;
 MongoClient.connect('mongodb://localhost', { useNewUrlParser: true }).then(connection => {
   db = connection.db('message-board');
-  app.listen(port_num, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log('App started on port '+port_num);
   });
 }).catch(error => {
