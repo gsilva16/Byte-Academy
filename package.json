@@ -2,13 +2,13 @@
   "name": "message",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "compile": "babel src --presets react,es2015 --out-dir static",
     "watch": "babel src --presets react,es2015 --out-dir static --watch",
     "init-db": "mongo scripts/init.mongo.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server.js"
+    "start":"node index.js"
   },
   "author": "",
   "license": "ISC",
