@@ -12,6 +12,11 @@ let port_num = process.env.PORT;
 let db;
 MongoClient.connect(process.env.MONGODB_URI||'mongodb://localhost:27017', { useNewUrlParser: true }).then(connection => {
   db = connection.db('heroku_9z2px013');
+  const changeStream = db.collection('events').watch(pipeline);
+  changeStream.on("change",function(change){
+    console.log(change);
+    window.location.reload();
+  });
   app.listen(process.env.PORT || 3000, () => {
     console.log('App started on port '+port_num);
   });
