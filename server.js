@@ -8,12 +8,12 @@ app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
 
-
+let port_num = process.env.PORT;
 let db;
 MongoClient.connect('mongodb://localhost', { useNewUrlParser: true }).then(connection => {
   db = connection.db('message-board');
-  app.listen(3000, () => {
-    console.log('App started on port 3000');
+  app.listen(port_num, () => {
+    console.log('App started on port '+port_num);
   });
 }).catch(error => {
   console.log('ERROR:', error);
